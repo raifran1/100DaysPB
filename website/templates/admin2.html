@@ -1,0 +1,57 @@
+{% extends 'base_admin2.html' %}
+
+{% block title %}Admin 2{% endblock %}
+
+{% block body %}
+<!-- Page Content -->
+<div class="container">
+
+    <h1 class="mt-4">Aulas</h1>
+    <a href="{% url 'post_aula' %}" class="btn btn-success">Novo</a>
+    <!-- /.row -->
+    <div class="row">
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Título</th>
+              <th scope="col">Autor</th>
+                <th scope="col">Vídeo</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Data de publicado</th>
+                <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          {% if Aulas %}
+              {% for aula in Aulas %}
+                <tr>
+                    <th scope="row">{{aula.id}}</th>
+                    <td>{{aula.title}}</td>
+                    <td>{{aula.autor}}</td>
+                    <td>{{aula.video}}</td>
+
+                    {% if aula.image %}
+                    <td style="width:100%;" class="text-center"><img class="img-responsive" width="300" src="{{ aula.image.url }}"/></td>
+                    {% else %}
+                    <td style="width:100%;" class="text-center"><img class="img-responsive" src="http://placehold.it/300x200"/></td>
+                    {% endif %}
+
+                    <td>{{aula.publicado}}</td>
+                    <td><a href="{% url 'editarAula' aula.id %}" class="btn btn-warning">Editar</a>
+                    <a href="{% url 'removerAula' aula.id %}" class="btn btn-danger">Remover</a></td>
+                </tr>
+                {% endfor %}
+          {% endif %}
+          </tbody>
+        </table>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+{% endblock %}

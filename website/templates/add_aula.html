@@ -1,0 +1,26 @@
+{% extends 'base_admin2.html' %}
+
+{% block title %}Admin 2{% endblock %}
+
+{% block body %}
+<!-- Page Content -->
+<div class="container">
+
+    <h1 class="mt-4">Aula</h1>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-md-12">
+<!--            Adicionar enctype para upload de imagem-->
+            <form method="POST" class="aula-form" action="" enctype="multipart/form-data">
+                {% csrf_token %} <!--valida se essa submissão é realmente uma submissão segura-->
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+{% endblock %}

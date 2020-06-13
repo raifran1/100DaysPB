@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}#100AulasPowerBIcomFG{% endblock %}
+
+{% block body %}
+  <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 bold text-white mt-5 mb-2"><strong>#100AulasPowerBIcomFG</strong></h1>
+          <p class="lead mb-5 text-white-100">Projeto para aprender Power BI do absoluto zero ao avançado em 100 aulas de forma definitiva e consistente.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>O que eu devo fazer?</h2>
+        <hr>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.</p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <h2>Contatos</h2>
+        <hr>
+        <address>
+          <strong>Fábrica de Gênios</strong>
+          <br>Teresina, Pi - Brasil
+          <br>
+        </address>
+        <address>
+          <abbr title="Phone">Whatsapp:</abbr>
+          (86) 99927-2370
+          <br>
+          <abbr title="Email">E-mail:</abbr>
+          <a href="mailto:#">arturfdasveloso@gmail.com</a>
+        </address>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+
+      {% if Aulas %}
+        {% for aula in Aulas %}
+        <div class="col-md-4 mb-5">
+
+          <div class="card h-100">
+            {% if aula.image %}
+              <img class="card-img-top" src="{{ aula.image.url }}"  alt="Capa da imagem">
+            {% else %}
+              <img class="card-img-top" src="http://placehold.it/300x200" alt="300x200">
+            {% endif %}
+
+            <div class="card-body">
+              <h4 class="card-title">Aula {{ aula.aulaNumber }}</h4>
+              <p class="card-text">{{ aula.title }}</p>
+            </div>
+            <div class="card-footer">
+              <a href="{% url 'aula_detail' aula.id %}" class="btn btn-dark">Assistir aula</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+{% endblock %}
